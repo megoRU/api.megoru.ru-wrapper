@@ -24,7 +24,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.List;
+import java.util.Collection;
 
 public class MegoruAPIImpl implements MegoruAPI {
 
@@ -44,7 +44,7 @@ public class MegoruAPIImpl implements MegoruAPI {
     }
 
     @Override
-    public Result setListUsers(List<Participants> userList) {
+    public Result setListUsers(Collection<Participants> userList) {
         HttpUrl url = baseUrl.newBuilder()
                 .addPathSegment("api")
                 .addPathSegment("participants")

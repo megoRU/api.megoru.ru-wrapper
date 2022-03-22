@@ -2,7 +2,8 @@ package api.megoru.ru;
 
 import api.megoru.ru.entity.*;
 import api.megoru.ru.impl.MegoruAPIImpl;
-import java.util.List;
+
+import java.util.Collection;
 
 public interface MegoruAPI {
 
@@ -10,7 +11,7 @@ public interface MegoruAPI {
      * @param userList String List<Participants>
      * @return {@link Result}
      */
-    Result setListUsers(List<Participants> userList);
+    Result setListUsers(Collection<Participants> userList);
 
     /**
      * @param idUserWhoCreateGiveaway String idUserWhoCreateGiveaway
