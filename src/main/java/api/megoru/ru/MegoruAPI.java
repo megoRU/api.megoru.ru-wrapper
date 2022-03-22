@@ -45,12 +45,8 @@ public interface MegoruAPI {
             return this;
         }
 
-        public Builder botId(String botId) {
-            return this;
-        }
-
         /**
-         * @throws IllegalArgumentException if token or botId null
+         * @throws IllegalArgumentException if token null
          */
         public MegoruAPI build() {
             if (token == null)
