@@ -1,4 +1,4 @@
-# api.megoru.ru
+## api.megoru.ru
 
 ### Maven
 
@@ -13,13 +13,12 @@ https://jitpack.io/#megoRU/api.megoru.ru
 </repositories>
 
 <dependency>
-	<groupId></groupId>
-	<artifactId></artifactId>
-	<version></version>
+    <groupId>com.github.megoRU</groupId>
+    <artifactId>api.megoru.ru</artifactId>
+    <version>v1.0</version>
 </dependency>
 
 ```
-
 
 ## Dependencies
 

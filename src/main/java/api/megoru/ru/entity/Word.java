@@ -9,9 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Winners {
+public class Word {
 
-    private Integer n;
-    private Integer min;
-    private Integer max;
+    private String word;
 }

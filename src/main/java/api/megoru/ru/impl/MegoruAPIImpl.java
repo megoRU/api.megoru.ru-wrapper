@@ -1,10 +1,7 @@
 package api.megoru.ru.impl;
 
 import api.megoru.ru.MegoruAPI;
-import api.megoru.ru.entity.ErrorResponse;
-import api.megoru.ru.entity.Participants;
-import api.megoru.ru.entity.Result;
-import api.megoru.ru.entity.Winners;
+import api.megoru.ru.entity.*;
 import api.megoru.ru.io.DefaultResponseTransformer;
 import api.megoru.ru.io.NullResponseException;
 import api.megoru.ru.io.ResponseTransformer;
@@ -91,6 +88,23 @@ public class MegoruAPIImpl implements MegoruAPI {
         return post(url, json.toString(), new DefaultResponseTransformer<>(String[].class, gson));
     }
 
+    @Override
+    public Word getWord(GameWordLanguage GameWordLanguage) {
+        HttpUrl url = baseUrl.newBuilder()
+                .addPathSegment("api")
+                .addPathSegment("word")
+                .build();
+
+        JSONObject json = new JSONObject();
+        try {
+            json.put("language", GameWordLanguage.getLanguage());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return post(url, json.toString(), new DefaultResponseTransformer<>(Word.class, gson));
+    }
+
     private <E> E get(HttpUrl url, ResponseTransformer<E> responseTransformer) {
         HttpGet request = new HttpGet(url.uri());
         request.addHeader(HttpHeaders.CONTENT_TYPE, "application/json");
@@ -131,6 +145,8 @@ public class MegoruAPIImpl implements MegoruAPI {
                 // Get HttpResponse Status
                 ErrorResponse result = gson.fromJson(body, ErrorResponse.class);
                 throw new UnsuccessfulHttpException(result.getError().getCode(), result.getError().getMessage());
+            } else if (response.getStatusLine().getStatusCode() >= 500) {
+                throw new Exception("API not work, or connection refused");
             }
         } catch (Exception e) {
             e.printStackTrace();

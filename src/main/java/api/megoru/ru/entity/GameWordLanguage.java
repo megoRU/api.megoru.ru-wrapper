@@ -9,9 +9,12 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Winners {
+public class GameWordLanguage {
 
-    private Integer n;
-    private Integer min;
-    private Integer max;
+    private String language;
+
+    @Override
+    public String toString() {
+        return "{" + "\"language\": \"" + language + "\"" + '}';
+    }
 }

@@ -1,5 +1,7 @@
 import api.megoru.ru.MegoruAPI;
+import api.megoru.ru.entity.GameWordLanguage;
 import api.megoru.ru.entity.Winners;
+import api.megoru.ru.entity.Word;
 import api.megoru.ru.impl.MegoruAPIImpl;
 
 public class Main {
@@ -44,6 +46,11 @@ public class Main {
         for (int i = 0; i < strings.length; i++) {
             System.out.println(strings[i]);
         }
+
+
+        Word word = api.getWord(new GameWordLanguage("rus"));
+
+        System.out.println(word.getWord());
 
 
     }

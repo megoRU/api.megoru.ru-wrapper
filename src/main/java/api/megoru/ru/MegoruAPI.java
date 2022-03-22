@@ -1,8 +1,6 @@
 package api.megoru.ru;
 
-import api.megoru.ru.entity.Participants;
-import api.megoru.ru.entity.Result;
-import api.megoru.ru.entity.Winners;
+import api.megoru.ru.entity.*;
 import api.megoru.ru.impl.MegoruAPIImpl;
 import java.util.List;
 
@@ -27,6 +25,14 @@ public interface MegoruAPI {
      * @return String[]
      */
     String[] setWinners(Winners winners);
+
+
+    /**
+     * @param gameWordLanguage it`s {@link GameWordLanguage}
+     * @param
+     * @return {@link Word}
+     */
+    Word getWord(GameWordLanguage gameWordLanguage);
 
     class Builder {
 
