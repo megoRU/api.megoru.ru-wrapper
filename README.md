@@ -15,7 +15,7 @@ https://jitpack.io/#megoRU/api.megoru.ru
 <dependency>
     <groupId>com.github.megoRU</groupId>
     <artifactId>api.megoru.ru</artifactId>
-    <version>v1.0</version>
+    <version>v1.1</version>
 </dependency>
 
 ```
