@@ -1,63 +1,49 @@
 import api.megoru.ru.MegoruAPI;
-import api.megoru.ru.entity.bot.botinfo.BotInfo;
+import api.megoru.ru.entity.Winners;
 import api.megoru.ru.impl.MegoruAPIImpl;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        MegoruAPI api = new MegoruAPIImpl(
-                "580336b2-74da-488a-97c8-b7caaf873221",
-                "808277484524011531");
+        MegoruAPI api = new MegoruAPIImpl("JoUV9CFurkMHrbUtshs7gqvesxjWHvUqdeNatbAqkudwegAsH7hANMCvrAnvkpm3"); //JoUV9CFurkMHrbUtshs7gqvesxjWHvUqdeNatbAqkudwegAsH7hANMCvrAnvkpm3
 
-
-//        505333250810576897 - userid ля поиска его комментариев
-
-//        BotInfo botInfo = api.getBotInformation("808277484524011531").toCompletableFuture().get();
-//
-//        System.out.println(botInfo.getInformation().toString());
-
-
-//        api.setStats(191, 1, 350);
-
-
-        BotInfo bot = api.getBotInformation("808277484524011531");
-
-        System.out.println(bot.getInformation().toString());
-
-//                .whenComplete((botInfo1, throwable) -> {
-//                    System.out.println(botInfo1.getInformation().getDevelopers());
-//
-//                if (throwable != null) {
-//                    System.out.println(throwable.getMessage());
-//
-//                }
-//                });
-
-//      DeveloperBots[] developerBots = api.getDeveloperBots("250699265389625347");
 //
 //
+//        List<Participants> participantsList = new ArrayList<>();
 //
-//        for (int i = 0; i < developerBots.length; i++) {
-//            System.out.println(developerBots[i].toString());
+//        participantsList.add(new Participants(
+//                "43243234243342",
+//                "4323244343234234234432342342",
+//                432432432342L,
+//                432432432342L,
+//                "nickName",
+//                "nickNameTag")
+//        );
+//        participantsList.add(new Participants(
+//                "432443243342432f34243342",
+//                "4323244343234234234432342342",
+//                4324324323442L,
+//                43243243432342L,
+//                "nickNam33e",
+//                "nickN44ameTag")
+//        );
+//
+//
+//        Participants[] listUsers = api.getListUsers("250699265389625347", "1203275533941760041");
+//
+//        for (int i = 0; i < listUsers.length; i++) {
+//            System.out.println(listUsers[i].getNickName());
 //        }
 
 
-//        api.setStats(1, 1, 1);
-//
-//
-//
-//        api
-//                .getBotInformation("808277484524011531")
-//                .getLinks()
-//                .forEach(System.out::println);
-//
-//        Comments[] comments = api.getBotComments();
-//
-//
-//        for (int i = 0; i < comments.length; i++) {
-//            System.out.println(comments[i].getUserId());
-//        }
+        Winners winners = new Winners(3, 0, 10);
+
+        String[] strings = api.setWinners(winners);
+
+        for (int i = 0; i < strings.length; i++) {
+            System.out.println(strings[i]);
+        }
 
 
     }
