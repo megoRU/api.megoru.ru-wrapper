@@ -6,7 +6,7 @@
 
     <groupId>api.megoru.ru</groupId>
     <artifactId>api.megoru.ru</artifactId>
-    <version>1.5</version>
+    <version>1.7</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -24,9 +24,9 @@
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
                     <archive>
-<!--                        <manifest>-->
-<!--                            <mainClass>Main</mainClass>-->
-<!--                        </manifest>-->
+                        <manifest>
+                            <mainClass>Main</mainClass>
+                        </manifest>
                     </archive>
                 </configuration>
                 <executions>
