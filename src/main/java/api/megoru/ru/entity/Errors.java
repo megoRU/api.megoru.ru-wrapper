@@ -2,8 +2,8 @@ package api.megoru.ru.entity;
 
 public class Errors {
 
-    Integer code;
-    String message;
+    public Integer code;
+    public String message;
 
     public Integer getCode() {
         return code;

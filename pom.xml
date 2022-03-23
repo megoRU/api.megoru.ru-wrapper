@@ -6,7 +6,7 @@
 
     <groupId>api.megoru.ru</groupId>
     <artifactId>api.megoru.ru</artifactId>
-    <version>1.1</version>
+    <version>1.4</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>

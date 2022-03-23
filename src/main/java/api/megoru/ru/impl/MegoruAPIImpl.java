@@ -30,7 +30,7 @@ public class MegoruAPIImpl implements MegoruAPI {
 
     private static final HttpUrl baseUrl = new HttpUrl.Builder()
             .scheme("http")
-            .host("193.163.203.77") //vps: 193.163.203.77 //local: 127.0.0.1
+            .host("127.0.0.1") //vps: 193.163.203.77 //local: 127.0.0.1
             .port(8085)
             .build();
 
@@ -44,7 +44,7 @@ public class MegoruAPIImpl implements MegoruAPI {
     }
 
     @Override
-    public Result setListUsers(Collection<Participants> userList) {
+    public Result setListUsers(Collection<Participants> userList) throws UnsuccessfulHttpException {
         HttpUrl url = baseUrl.newBuilder()
                 .addPathSegment("api")
                 .addPathSegment("participants")
@@ -54,7 +54,7 @@ public class MegoruAPIImpl implements MegoruAPI {
     }
 
     @Override
-    public Participants[] getListUsers(String idUserWhoCreateGiveaway, String giveawayId) {
+    public Participants[] getListUsers(String idUserWhoCreateGiveaway, String giveawayId) throws UnsuccessfulHttpException {
         HttpUrl url = baseUrl.newBuilder()
                 .addPathSegment("api")
                 .addPathSegment("get-participants")
@@ -71,7 +71,7 @@ public class MegoruAPIImpl implements MegoruAPI {
     }
 
     @Override
-    public String[] setWinners(Winners winners) {
+    public String[] setWinners(Winners winners) throws UnsuccessfulHttpException {
         HttpUrl url = baseUrl.newBuilder()
                 .addPathSegment("api")
                 .addPathSegment("winners")
@@ -89,7 +89,7 @@ public class MegoruAPIImpl implements MegoruAPI {
     }
 
     @Override
-    public Word getWord(GameWordLanguage GameWordLanguage) {
+    public Word getWord(GameWordLanguage GameWordLanguage) throws UnsuccessfulHttpException {
         HttpUrl url = baseUrl.newBuilder()
                 .addPathSegment("api")
                 .addPathSegment("word")
@@ -105,7 +105,7 @@ public class MegoruAPIImpl implements MegoruAPI {
         return post(url, json.toString(), new DefaultResponseTransformer<>(Word.class, gson));
     }
 
-    private <E> E get(HttpUrl url, ResponseTransformer<E> responseTransformer) {
+    private <E> E get(HttpUrl url, ResponseTransformer<E> responseTransformer) throws UnsuccessfulHttpException {
         HttpGet request = new HttpGet(url.uri());
         request.addHeader(HttpHeaders.CONTENT_TYPE, "application/json");
         request.addHeader(HttpHeaders.AUTHORIZATION, this.token);
@@ -113,7 +113,7 @@ public class MegoruAPIImpl implements MegoruAPI {
         return execute(request, responseTransformer);
     }
 
-    private <E> E post(HttpUrl url, String jsonBody, ResponseTransformer<E> responseTransformer) {
+    private <E> E post(HttpUrl url, String jsonBody, ResponseTransformer<E> responseTransformer) throws UnsuccessfulHttpException {
         HttpPost request = new HttpPost(url.uri());
         request.addHeader(HttpHeaders.CONTENT_TYPE, "application/json");
         request.addHeader(HttpHeaders.AUTHORIZATION, this.token);
@@ -122,16 +122,15 @@ public class MegoruAPIImpl implements MegoruAPI {
         return execute(request, responseTransformer);
     }
 
-    private <E> E execute(HttpRequestBase request, ResponseTransformer<E> responseTransformer) {
-        HttpEntity entity;
+    private <E> E execute(HttpRequestBase request, ResponseTransformer<E> responseTransformer) throws UnsuccessfulHttpException {
         String body = null;
+        CloseableHttpResponse response = null;
         try {
-            CloseableHttpResponse response = httpClient.execute(request);
-
+            response = httpClient.execute(request);
             // Get HttpResponse Status
             System.out.println("Status: " + response.getStatusLine().getStatusCode());
 
-            entity = response.getEntity();
+            HttpEntity entity = response.getEntity();
 
             if (entity == null) {
                 throw new NullResponseException();
@@ -139,18 +138,24 @@ public class MegoruAPIImpl implements MegoruAPI {
 
             body = EntityUtils.toString(entity);
 
-            if (response.getStatusLine().getStatusCode() == 401
-                    || response.getStatusLine().getStatusCode() == 404
-                    || response.getStatusLine().getStatusCode() == 403) {
-                // Get HttpResponse Status
-                ErrorResponse result = gson.fromJson(body, ErrorResponse.class);
-                throw new UnsuccessfulHttpException(result.getError().getCode(), result.getError().getMessage());
-            } else if (response.getStatusLine().getStatusCode() >= 500) {
-                throw new Exception("API not work, or connection refused");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ignored) {}
+
+        System.out.println(body);
+
+        if (response == null) {
+            throw new UnsuccessfulHttpException(500, "response is null");
         }
+
+        if (response.getStatusLine().getStatusCode() == 401
+                || response.getStatusLine().getStatusCode() == 404
+                || response.getStatusLine().getStatusCode() == 403) {
+            // Get HttpResponse Status
+            ErrorResponse result = gson.fromJson(body, ErrorResponse.class);
+            throw new UnsuccessfulHttpException(result.getError().getCode(), result.getError().getMessage());
+        } else if (response.getStatusLine().getStatusCode() >= 500) {
+            throw new UnsuccessfulHttpException(response.getStatusLine().getStatusCode(), "API not work, or connection refused");
+        }
+
         return responseTransformer.transform(body);
     }
 }

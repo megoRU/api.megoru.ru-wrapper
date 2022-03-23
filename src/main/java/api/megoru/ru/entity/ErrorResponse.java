@@ -2,7 +2,7 @@ package api.megoru.ru.entity;
 
 public class ErrorResponse {
 
-    Errors error;
+    public Errors error;
 
     public ErrorResponse(Errors error) {
         this.error = error;

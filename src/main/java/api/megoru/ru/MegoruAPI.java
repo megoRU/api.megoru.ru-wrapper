@@ -2,6 +2,7 @@ package api.megoru.ru;
 
 import api.megoru.ru.entity.*;
 import api.megoru.ru.impl.MegoruAPIImpl;
+import api.megoru.ru.io.UnsuccessfulHttpException;
 
 import java.util.Collection;
 
@@ -11,21 +12,21 @@ public interface MegoruAPI {
      * @param userList String List<Participants>
      * @return {@link Result}
      */
-    Result setListUsers(Collection<Participants> userList);
+    Result setListUsers(Collection<Participants> userList) throws Exception;
 
     /**
      * @param idUserWhoCreateGiveaway String idUserWhoCreateGiveaway
      * @param giveawayId String giveawayId
      * @return {@link Result}
      */
-    Participants[] getListUsers(String idUserWhoCreateGiveaway, String giveawayId);
+    Participants[] getListUsers(String idUserWhoCreateGiveaway, String giveawayId) throws UnsuccessfulHttpException;
 
     /**
      * @param winners it`s {@link Winners}
      * @param
      * @return String[]
      */
-    String[] setWinners(Winners winners);
+    String[] setWinners(Winners winners) throws Exception;
 
 
     /**
@@ -33,7 +34,7 @@ public interface MegoruAPI {
      * @param
      * @return {@link Word}
      */
-    Word getWord(GameWordLanguage gameWordLanguage);
+    Word getWord(GameWordLanguage gameWordLanguage) throws Exception;
 
     class Builder {
 
