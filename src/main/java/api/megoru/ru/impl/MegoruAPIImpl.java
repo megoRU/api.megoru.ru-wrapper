@@ -74,7 +74,7 @@ public class MegoruAPIImpl implements MegoruAPI {
     public String[] setWinners(WinnersAndParticipants winnersAndParticipants) throws UnsuccessfulHttpException {
         HttpUrl url = baseUrl.newBuilder()
                 .addPathSegment("api")
-                .addPathSegment("winners")
+                .addPathSegment("participants")
                 .build();
 
         JSONObject json = new JSONObject(winnersAndParticipants);
