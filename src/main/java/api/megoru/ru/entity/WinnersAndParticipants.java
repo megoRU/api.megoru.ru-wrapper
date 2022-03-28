@@ -13,6 +13,7 @@ import java.util.Collection;
 @NoArgsConstructor
 public class WinnersAndParticipants {
 
+    private boolean isUpdate;
     public Collection<Participants> userList;
     public Winners winners;
 }
