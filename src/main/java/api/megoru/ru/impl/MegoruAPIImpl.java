@@ -71,20 +71,13 @@ public class MegoruAPIImpl implements MegoruAPI {
     }
 
     @Override
-    public String[] setWinners(Winners winners) throws UnsuccessfulHttpException {
+    public String[] setWinners(WinnersAndParticipants winnersAndParticipants) throws UnsuccessfulHttpException {
         HttpUrl url = baseUrl.newBuilder()
                 .addPathSegment("api")
                 .addPathSegment("winners")
                 .build();
 
-        JSONObject json = new JSONObject();
-        try {
-            json.put("n", winners.getN());
-            json.put("min", winners.getMin());
-            json.put("max", winners.getMax());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        JSONObject json = new JSONObject(winnersAndParticipants);
         return post(url, json.toString(), new DefaultResponseTransformer<>(String[].class, gson));
     }
 

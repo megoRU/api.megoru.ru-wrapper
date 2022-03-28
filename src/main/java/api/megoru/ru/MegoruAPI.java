@@ -22,12 +22,11 @@ public interface MegoruAPI {
     Participants[] getListUsers(String idUserWhoCreateGiveaway, String giveawayId) throws UnsuccessfulHttpException;
 
     /**
-     * @param winners it`s {@link Winners}
+     * @param winnersAndParticipants it`s {@link Winners}
      * @param
      * @return String[]
      */
-    String[] setWinners(Winners winners) throws Exception;
-
+    String[] setWinners(WinnersAndParticipants winnersAndParticipants) throws Exception;
 
     /**
      * @param gameWordLanguage it`s {@link GameWordLanguage}
