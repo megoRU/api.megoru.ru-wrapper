@@ -30,7 +30,7 @@ public class MegoruAPIImpl implements MegoruAPI {
 
     private static final HttpUrl baseUrl = new HttpUrl.Builder()
             .scheme("http")
-            .host("95.142.46.115") //vps: 91.200.146.99 //local: 127.0.0.1
+            .host("91.200.146.99") //vps: 91.200.146.99 //local: 127.0.0.1
             .port(8085)
             .build();
 
