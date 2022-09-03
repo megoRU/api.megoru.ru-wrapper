@@ -14,6 +14,6 @@ import java.util.Collection;
 public class WinnersAndParticipants {
 
     private boolean isUpdate;
-    public Collection<Participants> userList;
+    public Collection<? extends Participants> userList;
     public Winners winners;
 }
