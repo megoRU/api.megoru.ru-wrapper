@@ -30,9 +30,8 @@ import java.util.Collection;
 public class MegoruAPIImpl implements MegoruAPI {
 
     private static final HttpUrl baseUrl = new HttpUrl.Builder()
-            .scheme("http")
-            .host("85.192.63.15") //vps: 85.192.63.15 //local: 127.0.0.1
-            .port(8085)
+            .scheme("https")
+            .host("api.megoru.ru") //vps: 85.192.63.15 //local: 127.0.0.1
             .build();
 
     private final Gson gson;
@@ -135,9 +134,6 @@ public class MegoruAPIImpl implements MegoruAPI {
             case 404: {
                 ErrorResponse result = gson.fromJson(body, ErrorResponse.class);
                 throw new UnsuccessfulHttpException(result.getError().getCode(), result.getError().getMessage());
-            }
-            case 500: {
-                throw new UnsuccessfulHttpException(response.getStatusLine().getStatusCode(), "API not work, or connection refused");
             }
             case 200: {
                 return responseTransformer.transform(body);
