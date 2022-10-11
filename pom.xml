@@ -13,7 +13,7 @@
 
     <groupId>api.megoru.ru</groupId>
     <artifactId>api.megoru.ru</artifactId>
-    <version>3.1</version>
+    <version>3.2</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -94,7 +94,7 @@
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20220320</version>
+            <version>20220924</version>
         </dependency>
 
         <dependency>

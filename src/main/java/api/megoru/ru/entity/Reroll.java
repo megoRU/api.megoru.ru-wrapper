@@ -5,15 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Collection;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class WinnersAndParticipants {
+public class Reroll {
 
+    public String idUserWhoCreateGiveaway;
     public String giveawayID;
-    public Collection<? extends Participants> userList;
     public Winners winners;
 }

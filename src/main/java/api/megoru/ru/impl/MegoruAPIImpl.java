@@ -36,10 +36,10 @@ public class MegoruAPIImpl implements MegoruAPI {
 
     private final Gson gson;
     private final CloseableHttpClient httpClient = HttpClients.createDefault();
-    private final String token;
+//    private final String token;
 
-    public MegoruAPIImpl(String token) {
-        this.token = token;
+    public MegoruAPIImpl() {
+//        this.token = token;
         this.gson = new GsonBuilder().setPrettyPrinting().create();
     }
 
@@ -82,6 +82,17 @@ public class MegoruAPIImpl implements MegoruAPI {
     }
 
     @Override
+    public String[] reroll(Reroll reroll) throws Exception {
+        HttpUrl url = baseUrl.newBuilder()
+                .addPathSegment("api")
+                .addPathSegment("reroll")
+                .build();
+
+        JSONObject json = new JSONObject(reroll);
+        return post(url, json.toString(), new DefaultResponseTransformer<>(String[].class, gson));
+    }
+
+    @Override
     public Word getWord(GameWordLanguage GameWordLanguage) throws Exception {
         HttpUrl url = baseUrl.newBuilder()
                 .addPathSegment("api")
@@ -101,7 +112,7 @@ public class MegoruAPIImpl implements MegoruAPI {
     private <E> E get(HttpUrl url, ResponseTransformer<E> responseTransformer) throws Exception {
         HttpGet request = new HttpGet(url.uri());
         request.addHeader(HttpHeaders.CONTENT_TYPE, "application/json");
-        request.addHeader(HttpHeaders.AUTHORIZATION, this.token);
+//        request.addHeader(HttpHeaders.AUTHORIZATION, this.token);
 
         return execute(request, responseTransformer);
     }
@@ -109,7 +120,7 @@ public class MegoruAPIImpl implements MegoruAPI {
     private <E> E post(HttpUrl url, String jsonBody, ResponseTransformer<E> responseTransformer) throws Exception {
         HttpPost request = new HttpPost(url.uri());
         request.addHeader(HttpHeaders.CONTENT_TYPE, "application/json");
-        request.addHeader(HttpHeaders.AUTHORIZATION, this.token);
+//        request.addHeader(HttpHeaders.AUTHORIZATION, this.token);
         HttpEntity stringEntity = new StringEntity(jsonBody, ContentType.APPLICATION_JSON);
         request.setEntity(stringEntity);
         return execute(request, responseTransformer);

@@ -27,29 +27,23 @@ public interface MegoruAPI {
     String[] setWinners(WinnersAndParticipants winnersAndParticipants) throws Exception;
 
     /**
+     * @param reroll it`s {@link Reroll}
+     * @return String[]
+     */
+    String[] reroll(Reroll reroll) throws Exception;
+
+    /**
      * @param gameWordLanguage it`s {@link GameWordLanguage}
      * @return {@link Word}
      */
     Word getWord(GameWordLanguage gameWordLanguage) throws Exception;
 
     class Builder {
-
-        // Required
-        private String token = null;
-
-        public Builder token(String token) {
-            this.token = token;
-            return this;
-        }
-
         /**
          * @throws IllegalArgumentException if token null
          */
         public MegoruAPI build() {
-            if (token == null)
-                throw new IllegalArgumentException("The provided token cannot be null!");
-
-            return new MegoruAPIImpl(token);
+            return new MegoruAPIImpl();
         }
 
     }
