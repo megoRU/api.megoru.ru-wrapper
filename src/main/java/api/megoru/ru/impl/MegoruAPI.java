@@ -1,7 +1,6 @@
-package api.megoru.ru;
+package api.megoru.ru.impl;
 
 import api.megoru.ru.entity.*;
-import api.megoru.ru.impl.MegoruAPIImpl;
 
 import java.util.Collection;
 

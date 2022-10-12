@@ -12,6 +12,7 @@ import lombok.Setter;
 public class GameWordLanguage {
 
     private String language;
+    private String category;
 
     @Override
     public String toString() {

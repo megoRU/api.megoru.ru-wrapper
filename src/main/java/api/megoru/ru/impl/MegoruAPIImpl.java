@@ -1,6 +1,5 @@
 package api.megoru.ru.impl;
 
-import api.megoru.ru.MegoruAPI;
 import api.megoru.ru.entity.*;
 import api.megoru.ru.io.DefaultResponseTransformer;
 import api.megoru.ru.io.NullResponseException;
@@ -36,10 +35,8 @@ public class MegoruAPIImpl implements MegoruAPI {
 
     private final Gson gson;
     private final CloseableHttpClient httpClient = HttpClients.createDefault();
-//    private final String token;
 
-    public MegoruAPIImpl() {
-//        this.token = token;
+    protected MegoruAPIImpl() {
         this.gson = new GsonBuilder().setPrettyPrinting().create();
     }
 
@@ -93,7 +90,7 @@ public class MegoruAPIImpl implements MegoruAPI {
     }
 
     @Override
-    public Word getWord(GameWordLanguage GameWordLanguage) throws Exception {
+    public Word getWord(GameWordLanguage gameWordLanguage) throws Exception {
         HttpUrl url = baseUrl.newBuilder()
                 .addPathSegment("api")
                 .addPathSegment("word")
@@ -101,7 +98,8 @@ public class MegoruAPIImpl implements MegoruAPI {
 
         JSONObject json = new JSONObject();
         try {
-            json.put("language", GameWordLanguage.getLanguage());
+            json.put("language", gameWordLanguage.getLanguage());
+            json.put("category", gameWordLanguage.getCategory());
         } catch (JSONException e) {
             e.printStackTrace();
         }
