@@ -91,26 +91,21 @@ public class MegoruAPIImpl implements MegoruAPI {
 
     @Override
     public Word getWord(GameWordLanguage gameWordLanguage) throws Exception {
-        HttpUrl url = baseUrl.newBuilder()
+        HttpUrl.Builder url = baseUrl.newBuilder()
                 .addPathSegment("api")
                 .addPathSegment("word")
-                .build();
+                .addQueryParameter("language", gameWordLanguage.getLanguage());
 
-        JSONObject json = new JSONObject();
-        try {
-            json.put("language", gameWordLanguage.getLanguage());
-            json.put("category", gameWordLanguage.getCategory());
-        } catch (JSONException e) {
-            e.printStackTrace();
+        if (gameWordLanguage.getCategory() != null || !gameWordLanguage.getCategory().equals("")) {
+            url.addQueryParameter("category", gameWordLanguage.getCategory());
         }
 
-        return post(url, json.toString(), new DefaultResponseTransformer<>(Word.class, gson));
+        return get(url.build(), new DefaultResponseTransformer<>(Word.class, gson));
     }
 
     private <E> E get(HttpUrl url, ResponseTransformer<E> responseTransformer) throws Exception {
         HttpGet request = new HttpGet(url.uri());
         request.addHeader(HttpHeaders.CONTENT_TYPE, "application/json");
-//        request.addHeader(HttpHeaders.AUTHORIZATION, this.token);
 
         return execute(request, responseTransformer);
     }
@@ -118,7 +113,6 @@ public class MegoruAPIImpl implements MegoruAPI {
     private <E> E post(HttpUrl url, String jsonBody, ResponseTransformer<E> responseTransformer) throws Exception {
         HttpPost request = new HttpPost(url.uri());
         request.addHeader(HttpHeaders.CONTENT_TYPE, "application/json");
-//        request.addHeader(HttpHeaders.AUTHORIZATION, this.token);
         HttpEntity stringEntity = new StringEntity(jsonBody, ContentType.APPLICATION_JSON);
         request.setEntity(stringEntity);
         return execute(request, responseTransformer);

@@ -38,13 +38,8 @@ public interface MegoruAPI {
     Word getWord(GameWordLanguage gameWordLanguage) throws Exception;
 
     class Builder {
-        /**
-         * @throws IllegalArgumentException if token null
-         */
         public MegoruAPI build() {
             return new MegoruAPIImpl();
         }
-
     }
-
 }
