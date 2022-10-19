@@ -96,7 +96,7 @@ public class MegoruAPIImpl implements MegoruAPI {
                 .addPathSegment("word")
                 .addQueryParameter("language", gameWordLanguage.getLanguage());
 
-        if (gameWordLanguage.getCategory() != null || !gameWordLanguage.getCategory().equals("")) {
+        if (gameWordLanguage.getCategory() != null && !gameWordLanguage.getCategory().equals("")) {
             url.addQueryParameter("category", gameWordLanguage.getCategory());
         }
 
