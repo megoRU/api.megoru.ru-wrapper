@@ -68,13 +68,13 @@ public class MegoruAPIImpl implements MegoruAPI {
     }
 
     @Override
-    public String[] setWinners(WinnersAndParticipants winnersAndParticipants) throws Exception {
+    public String[] setWinners(Winners winners) throws Exception {
         HttpUrl url = baseUrl.newBuilder()
                 .addPathSegment("api")
                 .addPathSegment("participants")
                 .build();
 
-        JSONObject json = new JSONObject(winnersAndParticipants);
+        JSONObject json = new JSONObject(winners);
         return post(url, json.toString(), new DefaultResponseTransformer<>(String[].class, gson));
     }
 

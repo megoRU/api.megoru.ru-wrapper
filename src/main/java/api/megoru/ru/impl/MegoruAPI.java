@@ -20,10 +20,10 @@ public interface MegoruAPI {
     Participants[] getListUsers(String idUserWhoCreateGiveaway, String giveawayId) throws Exception;
 
     /**
-     * @param winnersAndParticipants it`s {@link Winners}
+     * @param winners it`s {@link Winners}
      * @return String[]
      */
-    String[] setWinners(WinnersAndParticipants winnersAndParticipants) throws Exception;
+    String[] setWinners(Winners winners) throws Exception;
 
     /**
      * @param reroll it`s {@link Reroll}

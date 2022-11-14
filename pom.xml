@@ -13,7 +13,7 @@
 
     <groupId>api.megoru.ru</groupId>
     <artifactId>api.megoru.ru</artifactId>
-    <version>3.6</version>
+    <version>3.8</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
