@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>api.megoru.ru</groupId>
     <artifactId>api.megoru.ru</artifactId>
-    <version>4.0</version>
+    <version>4.1</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -84,6 +84,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.4.2</version>
                 <configuration>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
