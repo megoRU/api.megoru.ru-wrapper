@@ -22,7 +22,7 @@ public class MegoruAPIImpl implements MegoruAPI {
     private static final MediaType MEDIA_TYPE_JSON = MediaType.parse("application/json; charset=utf-8");
 
     private final boolean devMode;
-    private static final String HOST = "http://127.0.0.1:8080";
+    private static final String HOST = "https://api.megoru.ru";
 
     protected MegoruAPIImpl(boolean devMode) {
         this.devMode = devMode;

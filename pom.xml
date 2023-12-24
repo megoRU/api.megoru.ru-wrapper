@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>api.megoru.ru</groupId>
     <artifactId>api.megoru.ru</artifactId>
-    <version>5.0.0</version>
+    <version>5.0.1</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
