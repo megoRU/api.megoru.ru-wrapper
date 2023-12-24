@@ -1,5 +1,8 @@
-package api.megoru.ru.io;
+package api.megoru.ru.entity.exceptions;
 
+import lombok.Getter;
+
+@Getter
 public class UnsuccessfulHttpException extends Exception {
 
     private final int code;
@@ -9,10 +12,6 @@ public class UnsuccessfulHttpException extends Exception {
         super("The server responded with code: " + code + ", message: " + message);
         this.code = code;
         this.message = message;
-    }
-
-    public int getCode() {
-        return code;
     }
 
     @Override

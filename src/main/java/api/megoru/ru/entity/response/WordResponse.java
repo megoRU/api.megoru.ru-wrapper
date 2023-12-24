@@ -1,5 +1,6 @@
-package api.megoru.ru.entity;
+package api.megoru.ru.entity.response;
 
+import api.megoru.ru.impl.APIObject;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,9 +10,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Reroll {
+public class WordResponse implements APIObject {
 
-    public String idUserWhoCreateGiveaway;
-    public String giveawayID;
-    public Winners winners;
+    private String word;
 }

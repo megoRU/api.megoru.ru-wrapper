@@ -1,42 +1,25 @@
 package api.megoru.ru.impl;
 
 import api.megoru.ru.entity.*;
-import api.megoru.ru.io.UnsuccessfulHttpException;
+import api.megoru.ru.entity.exceptions.UnsuccessfulHttpException;
+import api.megoru.ru.entity.response.WordResponse;
 
-import java.util.Collection;
+import java.io.IOException;
+import java.util.List;
 
 public interface MegoruAPI {
 
     /**
-     * @param userList String List<Participants>
-     * @return {@link Result}
-     */
-    Result setListUsers(Collection<Participants> userList) throws UnsuccessfulHttpException;
-
-    /**
-     * @param idUserWhoCreateGiveaway String idUserWhoCreateGiveaway
-     * @param giveawayId String giveawayId
-     * @return {@link Result}
-     */
-    Participants[] getListUsers(String idUserWhoCreateGiveaway, String giveawayId) throws UnsuccessfulHttpException;
-
-    /**
      * @param winners it`s {@link Winners}
-     * @return String[]
+     * @return List<String>
      */
-    String[] setWinners(Winners winners) throws UnsuccessfulHttpException;
-
-    /**
-     * @param reroll it`s {@link Reroll}
-     * @return String[]
-     */
-    String[] reroll(Reroll reroll) throws UnsuccessfulHttpException;
+    List<String> getWinners(Winners winners) throws UnsuccessfulHttpException, IOException;
 
     /**
      * @param gameWordLanguage it`s {@link GameWordLanguage}
-     * @return {@link Word}
+     * @return {@link WordResponse}
      */
-    Word getWord(GameWordLanguage gameWordLanguage) throws Exception;
+    WordResponse getWord(GameWordLanguage gameWordLanguage) throws UnsuccessfulHttpException, IOException;
 
     class Builder {
 
