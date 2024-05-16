@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>api.megoru.ru</groupId>
     <artifactId>ru-wrapper</artifactId>
-    <version>5.0.3</version>
+    <version>5.0.4</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -26,14 +26,14 @@
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
-            <version>5.0.0-alpha.12</version>
+            <version>5.0.0-alpha.14</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.json/json -->
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20231013</version>
+            <version>20240303</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.jetbrains/annotations -->
@@ -47,7 +47,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.30</version>
+            <version>1.18.32</version>
             <scope>provided</scope>
         </dependency>
 
