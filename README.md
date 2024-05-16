@@ -2,7 +2,7 @@
 
 ### Maven
 
-https://jitpack.io/#megoRU/api.megoru.ru
+https://jitpack.io/#megoRU/api.megoru.ru-wrapper
 
 ```xml
 <repositories>
