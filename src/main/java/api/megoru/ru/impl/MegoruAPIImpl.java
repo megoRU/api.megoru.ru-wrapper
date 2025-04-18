@@ -66,8 +66,6 @@ public class MegoruAPIImpl implements MegoruAPI {
             if (response.isSuccessful()) {
                 String responseBody = Objects.requireNonNull(response.body()).string();
                 logResponse(responseBody);
-                if (!response.isSuccessful())
-                    throw new UnsuccessfulHttpException(response.code(), response.body().string());
                 return JsonUtil.fromJson(responseBody, tClass);
             } else {
                 throw new UnsuccessfulHttpException(response.code(), response.message());
