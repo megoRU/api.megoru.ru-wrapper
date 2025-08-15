@@ -37,8 +37,13 @@ public class MegoruAPIImpl implements MegoruAPI {
     public WordResponse getWord(GameWordLanguage gameWordLanguage) throws UnsuccessfulHttpException, IOException {
         String language = gameWordLanguage.getLanguage();
         String category = gameWordLanguage.getCategory();
+        Integer length = gameWordLanguage.getLength();
 
-        if (category != null) {
+        if (length != null && category != null) {
+            return parseResponse(WordResponse.class, new WordRequest(HOST, language, category, length));
+        } else if (length != null) {
+            return parseResponse(WordResponse.class, new WordRequest(HOST, language, length));
+        } else if (category != null) {
             return parseResponse(WordResponse.class, new WordRequest(HOST, language, category));
         } else {
             return parseResponse(WordResponse.class, new WordRequest(HOST, language));

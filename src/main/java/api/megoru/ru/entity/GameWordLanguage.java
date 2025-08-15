@@ -15,6 +15,7 @@ public class GameWordLanguage {
     @NotNull
     private String language;
     private String category;
+    private Integer length;
 
     @Override
     public String toString() {
