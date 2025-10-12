@@ -1,28 +1,52 @@
-## api.megoru.ru
+# ⚙️ api.megoru.ru Java Wrapper
 
-### Maven
+[api.megoru.ru](https://api.megoru.ru)
 
-https://jitpack.io/#megoRU/api.megoru.ru-wrapper
+---
+
+## 🚀 Пример использования
+
+```java
+public static void main(String[] args) {
+    MegoruAPI megoruAPI = new MegoruAPI.Builder().build();
+    String word = megoruAPI.getWord(gameWordLanguage).word();
+
+    System.out.println(word);
+}
+```
+
+---
+
+## 📦 Установка через Maven
+
+Добавьте JitPack в репозитории:
 
 ```xml
 <repositories>
- <repository>
-	<id>jitpack.io</id>
-	<url>https://jitpack.io</url>
- </repository>
+  <repository>
+    <id>jitpack.io</id>
+    <url>https://jitpack.io</url>
+  </repository>
 </repositories>
-
-<dependency>
-    <groupId>com.github.megoRU</groupId>
-    <artifactId>api.megoru.ru</artifactId>
-    <version>5.0.5</version>
-</dependency>
-
 ```
 
-## Dependencies
+Затем зависимость:
 
-1. [Gson](https://github.com/google/gson)
-2. [Apache HttpClient](https://github.com/apache/httpcomponents-client)
-3. [JSON-java](https://github.com/stleary/JSON-java)
-4. [okhttp](https://github.com/square/okhttp)
+```xml
+<dependency>
+  <groupId>com.github.megoRU</groupId>
+  <artifactId>api.megoru.ru</artifactId>
+  <version>5.1.1</version>
+</dependency>
+```
+
+📍 [Ссылка на JitPack](https://jitpack.io/#megoRU/api.megoru.ru-wrapper)
+
+---
+
+## ⚙️ Зависимости
+
+* [Gson](https://github.com/google/gson)
+* [Apache HttpClient](https://github.com/apache/httpcomponents-client)
+* [JSON-java](https://github.com/stleary/JSON-java)
+* [OkHttp](https://github.com/square/okhttp)
