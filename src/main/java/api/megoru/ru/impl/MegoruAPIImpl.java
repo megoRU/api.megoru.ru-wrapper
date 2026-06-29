@@ -11,7 +11,6 @@ import api.megoru.ru.entity.response.WordResponse;
 import api.megoru.ru.utils.JsonUtil;
 import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
