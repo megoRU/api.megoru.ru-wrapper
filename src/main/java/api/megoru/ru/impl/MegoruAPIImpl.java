@@ -1,23 +1,33 @@
 package api.megoru.ru.impl;
 
 import api.megoru.ru.entity.GameWordLanguage;
+import api.megoru.ru.entity.HangmanChatAI;
 import api.megoru.ru.entity.Winners;
 import api.megoru.ru.entity.exceptions.UnsuccessfulHttpException;
 import api.megoru.ru.entity.request.APIRequest;
+import api.megoru.ru.entity.request.HangmanChatRequest;
 import api.megoru.ru.entity.request.WinnersRequest;
 import api.megoru.ru.entity.request.WordRequest;
+import api.megoru.ru.entity.response.LetterResponse;
 import api.megoru.ru.entity.response.WinnersResponse;
 import api.megoru.ru.entity.response.WordResponse;
 import api.megoru.ru.utils.JsonUtil;
 import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
+
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
 import java.util.Objects;
 
 public class MegoruAPIImpl implements MegoruAPI {
 
-    private static final OkHttpClient CLIENT = new OkHttpClient();
+    private static final OkHttpClient CLIENT = new OkHttpClient.Builder()
+            .connectTimeout(Duration.ofSeconds(10))
+            .readTimeout(Duration.ofMinutes(2))
+            .writeTimeout(Duration.ofMinutes(2))
+            .callTimeout(Duration.ofMinutes(2))
+            .build();
     private static final MediaType MEDIA_TYPE_JSON = MediaType.parse("application/json; charset=utf-8");
 
     private final boolean devMode;
@@ -47,6 +57,12 @@ public class MegoruAPIImpl implements MegoruAPI {
         } else {
             return parseResponse(WordResponse.class, new WordRequest(HOST, language));
         }
+    }
+
+    @Override
+    public String getHangmanLetter(HangmanChatAI hangmanChatAI) throws UnsuccessfulHttpException, IOException {
+        LetterResponse letterResponse = parseResponse(LetterResponse.class, new HangmanChatRequest(HOST, hangmanChatAI));
+        return letterResponse.getResponse();
     }
 
     private <T extends APIObject> T parseResponse(Class<T> tClass, @NotNull APIRequest apiRequest) throws IOException, UnsuccessfulHttpException {
