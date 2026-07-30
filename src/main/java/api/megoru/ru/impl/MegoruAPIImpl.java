@@ -62,7 +62,7 @@ public class MegoruAPIImpl implements MegoruAPI {
     @Override
     public String getHangmanLetter(HangmanChatAI hangmanChatAI) throws UnsuccessfulHttpException, IOException {
         LetterResponse letterResponse = parseResponse(LetterResponse.class, new HangmanChatRequest(HOST, hangmanChatAI));
-        return letterResponse.getResponse();
+        return letterResponse.getResult();
     }
 
     private <T extends APIObject> T parseResponse(Class<T> tClass, @NotNull APIRequest apiRequest) throws IOException, UnsuccessfulHttpException {
