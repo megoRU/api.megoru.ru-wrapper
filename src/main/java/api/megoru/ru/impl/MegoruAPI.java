@@ -3,7 +3,6 @@ package api.megoru.ru.impl;
 import api.megoru.ru.entity.*;
 import api.megoru.ru.entity.exceptions.UnsuccessfulHttpException;
 import api.megoru.ru.entity.HangmanChatAI;
-import api.megoru.ru.entity.response.LetterResponse;
 import api.megoru.ru.entity.response.WordResponse;
 
 import java.io.IOException;
